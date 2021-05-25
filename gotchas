@@ -1,0 +1,15 @@
+1. using `wee_alloc` instead of default allocator reduces `.wasm` file size from 137Kb to 3Kb
+
+2. wasm operates with DOM API through js glue code:
+  - wasm calls js glue code to find element
+  - js glue code finds element with DOM API, stores it to local js array, and returns array index to wasm
+  - when calling element methods wasm passes array index back to js glue
+  - js glue finds target element in local js array by index, and calls method on it
+
+3. RLS is slow and often unhelpful
+  - no code completion for method names on web_sys objects
+  - few seconds to highlight errors
+  - needs to restart often to catch-up changes
+  - go-to-definition (ctrl+click) doesn't work inside cargo dependency source
+  - rename-symbol (F2) fails with "Rename failed: no information for symbol"-error
+  - tried rust-analizer as alternative, it's faster but doesn't detect types of web_sys methods at all
