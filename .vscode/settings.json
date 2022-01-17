@@ -1,0 +1,10 @@
+{
+  "editor.formatOnSave": true,
+  "resmon.show.battery": false,
+  "resmon.show.cpufreq": false,
+  "rust-analyzer.checkOnSave.command": "clippy",
+  "rust-analyzer.inlayHints.enable": true,
+  "files.associations": {
+    "*.glsl": "glsl"
+  }
+}

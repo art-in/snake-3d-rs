@@ -1,0 +1,6 @@
+# TODO: update rustfmt to v2 when it's stable, and remove "unstable_features"
+# if all features been used here are stable at that time.
+# current stable rustfmt v1.4 does not have "wrap_comments" option and it cannot
+# be activated as unstable https://github.com/rust-lang/rustfmt/issues/3347
+unstable_features = true
+wrap_comments = true

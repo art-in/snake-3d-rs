@@ -1,28 +1,17 @@
 {
-	"name": "Rust",
+	"name": "snake-3d-rs",
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	"runArgs": [
-		"--cap-add=SYS_PTRACE",
-		"--security-opt",
-		"seccomp=unconfined"
-	],
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-		"terminal.integrated.shell.linux": "/bin/bash",
-		"lldb.executable": "/usr/bin/lldb",
-		// VS Code don't watch files under ./target
-		"files.watcherExclude": {
-			"**/target/**": true
-		},
-		"editor.formatOnSave": true
-	},
+	"runArgs": [],
 	"extensions": [
-		"rust-lang.rust",
-		"bungcip.better-toml",
-		"vadimcn.vscode-lldb",
+		"eamodio.gitlens",
 		"mutantdino.resourcemonitor",
-		"dtsvet.vscode-wasm"
+		"slevesque.shader",
+		"dtsvet.vscode-wasm",
+		"matklad.rust-analyzer",
+		"tamasfe.even-better-toml",
+		"serayuzgur.crates",
+		"jedeop.crates-completer"
 	]
 }

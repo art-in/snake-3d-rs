@@ -1,20 +1,19 @@
 {
-  "author": "art-in <artin@artin.space>",
   "name": "snake-3d-rs",
   "version": "0.1.0",
+  "author": "art-in <artin@artin.space>",
   "scripts": {
-    "build": "rimraf dist pkg && webpack",
-    "start": "rimraf dist pkg && webpack-dev-server --open -d",
-    "lint": "cargo clippy",
-    "test": "cargo test && wasm-pack test --headless"
+    "build": "rimraf pack build && wasm-pack build --out-dir build --out-name index",
+    "pack": "rimraf pack build && webpack",
+    "start": "rimraf pack build && webpack-dev-server",
+    "lint": "cargo clippy"
   },
   "devDependencies": {
-    "@wasm-tool/wasm-pack-plugin": "^1.1.0",
-    "copy-webpack-plugin": "^5.0.3",
-    "raw-loader": "4.0.2",
-    "rimraf": "^3.0.0",
-    "webpack": "^4.42.0",
-    "webpack-cli": "^3.3.3",
-    "webpack-dev-server": "^3.7.1"
+    "@wasm-tool/wasm-pack-plugin": "^1.6.0",
+    "copy-webpack-plugin": "^10.2.0",
+    "webpack": "^5.66.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3",
+    "rimraf": "^3.0.2"
   }
 }

@@ -1,11 +1,14 @@
-FROM rust:1.51.0
-RUN curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-RUN cargo install cargo-generate
-RUN rustup component add rls rust-src rust-analysis clippy
+FROM rust:1.58.0
 
-RUN curl -fsSL https://deb.nodesource.com/setup_15.x | bash -
+# install rust components
+RUN rustup component add rustfmt clippy
+
+# install nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
-# temporary to hide new-npm-version notification from CLI
-RUN npm install -g npm@7.14.0
 
-ENV USER=root
+# hide "new version of npm available" notification from CLI
+RUN npm config set update-notifier false
+
+# install wasm-pack
+RUN npm install -g wasm-pack@0.10.2

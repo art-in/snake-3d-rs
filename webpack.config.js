@@ -2,35 +2,43 @@ const path = require("path");
 const CopyPlugin = require("copy-webpack-plugin");
 const WasmPackPlugin = require("@wasm-tool/wasm-pack-plugin");
 
-const dist = path.resolve(__dirname, "dist");
+const packDir = path.resolve(__dirname, "pack");
+const buildDir = path.resolve(__dirname, "build");
+const staticDir = path.resolve(__dirname, "static");
 
 module.exports = {
-  mode: "production",
+  mode: "development", // development/production
   entry: {
-    index: "./js/bootstrap.js"
+    index: path.resolve(buildDir, "index.js")
   },
   output: {
-    path: dist,
+    path: packDir,
     filename: "[name].js"
   },
   devServer: {
-    contentBase: dist,
+    // do not log into browser console on each successful hot reload
+    client: { logging: 'warn' }
   },
   plugins: [
-    new CopyPlugin([
-      path.resolve(__dirname, "static")
-    ]),
-    // watches target folder and rebuilds rust lib on changes
+    new CopyPlugin({ patterns: [{ from: staticDir }] }),
+
+    // watches rust crate dir and runs wasm-pack build on changes
     new WasmPackPlugin({
       crateDirectory: __dirname,
-    }),
+      outDir: buildDir
+    })
   ],
-  module: {
-    rules: [
-      {
-        test: /\.glsl$/i,
-        use: 'raw-loader',
-      },
-    ]
-  }
+  experiments: {
+    // allow to import wasm modules without dynamic import(), per spec proposal
+    // https://github.com/WebAssembly/esm-integration. static import desugarized
+    // into normal async fetch/instantiate process of wasm module (as before)
+    asyncWebAssembly: true
+  },
+  watchOptions: {
+    // enable polling to fix issue when dev server doesn't notice rebuilds
+    // TODO: remove when fixed https://github.com/wasm-tool/wasm-pack-plugin/issues/125
+    poll: 200,
+    aggregateTimeout: 200,
+    ignored: /node_modules/
+  },
 };
