@@ -1,10 +1,19 @@
 {
   "editor.formatOnSave": true,
+  "editor.tabSize": 4,
   "resmon.show.battery": false,
   "resmon.show.cpufreq": false,
   "rust-analyzer.checkOnSave.command": "clippy",
   "rust-analyzer.inlayHints.enable": true,
+  "editor.semanticTokenColorCustomizations": {
+    "rules": {
+      "*.mutable": {
+        // do not underline mutable variables, because it's too much visual noise
+        "underline": false,
+      }
+    }
+  },
   "files.associations": {
     "*.glsl": "glsl"
-  }
+  },
 }

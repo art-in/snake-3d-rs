@@ -3,22 +3,34 @@
     - few seconds to highlight errors
     - needs to restart often to catch-up changes
     - go-to-definition (ctrl+click) doesn't work inside cargo dependency source
-    - rename-symbol (F2) fails with "Rename failed: no information for symbol"-error
+    - rename-symbol (F2) fails with "Rename failed: no information for symbol"
 
-    `rust-analizer` is alternative RLS which is much better. it aims to replace official RLS  
+    `rust-analizer` (v0.3.909) is alternative RLS which is much better. it aims
+    to replace official RLS  
     https://github.com/rust-analyzer/rust-analyzer/issues/4224
+
+    waiting for support of vscode testing API from it  
+    https://github.com/rust-analyzer/rust-analyzer/issues/3601
 
 1. wasm operates with DOM API through js glue code:
     - wasm calls js glue code to find element
-    - js glue code finds element with DOM API, stores it to local js array, and returns array index to wasm
+    - js glue code finds element with DOM API, stores it to local js array, and
+      returns array index to wasm
     - when calling element methods wasm passes array index back to js glue
-    - js glue finds target element in local js array by index, and calls method on it
+    - js glue finds target element in local js array by index, and calls method
+      on it
 
-1. replacing default allocator with `wee_alloc` reduces `.wasm` file size from 137Kb to 3Kb
+    Reference Types can be used to pass js references directly to wasm,
+    `wasm-bindgen` supports it but `wasm-pack` not yet  
+    https://github.com/rustwasm/wasm-pack/issues/1047
+
+1. replacing default allocator with `wee_alloc` reduces `.wasm` file size from
+  137Kb to 3Kb
 
 1. `rustfmt` v1.4 (current stable) has no "wrap_comments" option  
   https://github.com/rust-lang/rustfmt/issues/3347
 
 1. `web-sys` has every little class as separate feature.  
-  web api methods will not appear in auto-complete until feature is added to `Cargo.toml` manually.  
-  and to find what feature you need for particular method you have to search `web-sys` sources.
+  web api methods will not appear in auto-complete until feature is added to
+  `Cargo.toml` manually. and to find what feature you need for particular
+  method you have to search `web-sys` sources, which is inconvenient.

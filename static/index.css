@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  
+  /* hide scrollbar */
+  overflow: hidden;
+
+  background-color: gray;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}

@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "author": "art-in <artin@artin.space>",
   "scripts": {
-    "build": "rimraf pack build && wasm-pack build --out-dir build --out-name index",
-    "pack": "rimraf pack build && webpack",
-    "start": "rimraf pack build && webpack-dev-server",
-    "lint": "cargo clippy"
+    "clean": "rimraf pack build",
+    "build": "npm run clean && wasm-pack build --out-dir build --out-name index --profiling",
+    "start": "npm run clean && webpack-dev-server --mode development --open",
+    "pack": "npm run clean && webpack --mode production",
+    "serve": "npm run pack && serve pack",
+    "lint": "cargo clippy",
+    "test": "cargo test"
   },
   "devDependencies": {
     "@wasm-tool/wasm-pack-plugin": "^1.6.0",

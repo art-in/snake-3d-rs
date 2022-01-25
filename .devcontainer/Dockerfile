@@ -10,5 +10,6 @@ RUN apt-get install -y nodejs
 # hide "new version of npm available" notification from CLI
 RUN npm config set update-notifier false
 
-# install wasm-pack
+# install global node modules
 RUN npm install -g wasm-pack@0.10.2
+RUN npm install -g serve@13.0.2

@@ -1,0 +1,1 @@
+experimenting with [wasm](https://en.wikipedia.org/wiki/WebAssembly) by writing same browser game in [ts](https://github.com/art-in/snake-3d-ts), [c++](https://github.com/art-in/snake-3d-cpp) and [rust](https://github.com/art-in/snake-3d-rs)

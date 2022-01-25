@@ -7,7 +7,6 @@ const buildDir = path.resolve(__dirname, "build");
 const staticDir = path.resolve(__dirname, "static");
 
 module.exports = {
-  mode: "development", // development/production
   entry: {
     index: path.resolve(buildDir, "index.js")
   },
