@@ -154,11 +154,6 @@ pub fn init_cube_drawer(state: &mut GameState) {
             cube.textures.get(side_type_idx as usize),
         );
 
-        // use dynamic binding to webgl API instead of GLES2 API here, because
-        // GLES2 "glTexImage2D" expects pointer to data array "const void *pixels":
-        // (a) it's impossible to get pointer to canvas data and pass it to wasm
-        // function, since canvas data is located in js memory,
-        // (b) js glue expectes pointer to wasm memory only
         ctx.tex_image_2d_with_u32_and_u32_and_canvas(
             web_sys::WebGlRenderingContext::TEXTURE_2D,
             0,
